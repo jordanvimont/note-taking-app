@@ -77,7 +77,7 @@ pnpm dev
 │   ├── note-preview.tsx  # Markdown preview
 │   └── ...               # Other components
 ├── hooks/                # Custom React hooks
-│   ├── use-notes.ts      # Note management hook
+│   ├── use-notes.tsx     # Note management hook
 │   └── use-toast.ts      # Toast notifications
 ├── lib/                  # Utility functions
 │   ├── storage.ts        # Local storage utilities
