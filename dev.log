@@ -1,0 +1,344 @@
+
+> note-taking-app@0.1.0 dev
+> set NEXT_TEST_WASM=1&& next dev --webpack -p 3001
+
+▲ Next.js 16.1.6 (webpack)
+- Local:         http://localhost:3001
+- Network:       http://10.0.0.94:3001
+- Environments: .env.local
+
+✓ Starting...
+⚠ experimental.useWasmBinary is not an option for supported platform win32/x64 and will be ignored.
+  Skipping creating a lockfile at C:\Users\User\OneDrive\Programs\.next\dev\lock because we're using WASM bindings
+✓ Ready in 3.9s
+○ Compiling /note/[id] ...
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 200 in 134ms (compile: 33ms, render: 101ms)
+⨯ ./node_modules/extend/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\extend\index.js'
+
+Import trace for requested module:
+./node_modules/extend/index.js
+./node_modules/unified/lib/index.js
+./node_modules/unified/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+○ Compiling /_error ...
+⨯ ./node_modules/extend/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\extend\index.js'
+
+Import trace for requested module:
+./node_modules/extend/index.js
+./node_modules/unified/lib/index.js
+./node_modules/unified/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 14.5s (compile: 14.0s, render: 484ms)
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 3.5s (compile: 3.5s, render: 40ms)
+⨯ ./node_modules/react-remove-scroll-bar/dist/es2015/constants.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\react-remove-scroll-bar\dist\es2015\constants.js'
+
+Import trace for requested module:
+./node_modules/react-remove-scroll-bar/dist/es2015/constants.js
+./node_modules/react-remove-scroll/dist/es2015/UI.js
+./node_modules/react-remove-scroll/dist/es2015/Combination.js
+./node_modules/react-remove-scroll/dist/es2015/index.js
+./node_modules/@radix-ui/react-dialog/dist/index.mjs
+./components/ui/dialog.tsx
+./app/note/[id]/page.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 25ms (compile: 11ms, render: 14ms)
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 28ms (compile: 13ms, render: 15ms)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\User\OneDrive\Programs\.next\dev\cache\webpack\server-development\1.pack.gz_' -> 'C:\Users\User\OneDrive\Programs\.next\dev\cache\webpack\server-development\1.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\User\OneDrive\Programs\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\User\OneDrive\Programs\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+⨯ ./node_modules/style-to-js/cjs/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\style-to-js\cjs\index.js'
+
+Import trace for requested module:
+./node_modules/style-to-js/cjs/index.js
+./node_modules/hast-util-to-jsx-runtime/lib/index.js
+./node_modules/hast-util-to-jsx-runtime/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 77ms (compile: 35ms, render: 42ms)
+⨯ ./node_modules/use-callback-ref/dist/es2015/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\use-callback-ref\dist\es2015\index.js'
+
+Import trace for requested module:
+./node_modules/use-callback-ref/dist/es2015/index.js
+./node_modules/react-remove-scroll/dist/es2015/UI.js
+./node_modules/react-remove-scroll/dist/es2015/Combination.js
+./node_modules/react-remove-scroll/dist/es2015/index.js
+./node_modules/@radix-ui/react-dialog/dist/index.mjs
+./components/ui/dialog.tsx
+./app/note/[id]/page.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 75ms (compile: 21ms, render: 54ms)
+⨯ ./node_modules/use-sidecar/dist/es2015/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\use-sidecar\dist\es2015\index.js'
+
+Import trace for requested module:
+./node_modules/use-sidecar/dist/es2015/index.js
+./node_modules/react-remove-scroll/dist/es2015/sidecar.js
+./node_modules/react-remove-scroll/dist/es2015/Combination.js
+./node_modules/react-remove-scroll/dist/es2015/index.js
+./node_modules/@radix-ui/react-dialog/dist/index.mjs
+./components/ui/dialog.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@radix-ui/react-use-effect-event/dist/index.mjs
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@radix-ui\react-use-effect-event\dist\index.mjs'
+
+Import trace for requested module:
+./node_modules/@radix-ui/react-use-effect-event/dist/index.mjs
+./node_modules/@radix-ui/react-use-controllable-state/dist/index.mjs
+./node_modules/@radix-ui/react-toast/dist/index.mjs
+./components/ui/toast.tsx
+./components/ui/toaster.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 44ms (compile: 19ms, render: 25ms)
+⨯ ./node_modules/@radix-ui/react-use-escape-keydown/dist/index.mjs
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@radix-ui\react-use-escape-keydown\dist\index.mjs'
+
+Import trace for requested module:
+./node_modules/@radix-ui/react-use-escape-keydown/dist/index.mjs
+./node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs
+./node_modules/@radix-ui/react-toast/dist/index.mjs
+./components/ui/toast.tsx
+./components/ui/toaster.tsx
+⨯ ./node_modules/@radix-ui/react-use-escape-keydown/dist/index.mjs
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@radix-ui\react-use-escape-keydown\dist\index.mjs'
+
+Import trace for requested module:
+./node_modules/@radix-ui/react-use-escape-keydown/dist/index.mjs
+./node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs
+./node_modules/@radix-ui/react-toast/dist/index.mjs
+./components/ui/toast.tsx
+./components/ui/toaster.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 36ms (compile: 22ms, render: 14ms)
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 65ms (compile: 21ms, render: 44ms)
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\User\\OneDrive\\Programs\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\User\\OneDrive\\Programs\\.next\\dev\\routes-manifest.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\.next\dev\routes-manifest.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\User\\OneDrive\\Programs\\.next\\dev\\routes-manifest.json'
+}
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 254ms (compile: 211ms, render: 44ms)
+ GET /note/2cca4cb5-2c10-4f91-b265-46154e295c36 500 in 254ms (compile: 211ms, render: 44ms)
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ POST /api/gemini 500 in 2.3s (compile: 2.2s, render: 112ms)
+ POST /api/gemini 500 in 2.3s (compile: 2.2s, render: 112ms)
+  Reload env: .env.local
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
+⨯ ./node_modules/@ungap/structured-clone/esm/index.js
+Error: ENOENT: no such file or directory, open 'C:\Users\User\OneDrive\Programs\node_modules\@ungap\structured-clone\esm\index.js'
+
+Import trace for requested module:
+./node_modules/@ungap/structured-clone/esm/index.js
+./node_modules/mdast-util-to-hast/lib/footer.js
+./node_modules/mdast-util-to-hast/index.js
+./node_modules/remark-rehype/index.js
+./node_modules/react-markdown/lib/index.js
+./node_modules/react-markdown/index.js
+./components/note-preview.tsx
+./app/note/[id]/page.tsx
