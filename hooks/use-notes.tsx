@@ -28,6 +28,8 @@ type NotesContextValue = {
   removeNote: (id: string) => Promise<void>;
   getNote: (id: string) => Promise<Note | null>;
   signInWithEmail: (email: string) => Promise<void>;
+  signInWithPassword: (email: string, password: string) => Promise<void>;
+  signUpWithPassword: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   refreshNotes: () => Promise<void>;
 };
@@ -225,6 +227,36 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const signInWithPassword = useCallback(
+    async (email: string, password: string) => {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) {
+        throw error;
+      }
+    },
+    []
+  );
+
+  const signUpWithPassword = useCallback(
+    async (email: string, password: string) => {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo:
+            typeof window !== "undefined" ? window.location.origin : undefined,
+        },
+      });
+      if (error) {
+        throw error;
+      }
+    },
+    []
+  );
+
   const signOut = useCallback(async () => {
     await supabase.auth.signOut();
     setNotes([]);
@@ -266,6 +298,8 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
       removeNote,
       getNote,
       signInWithEmail,
+      signInWithPassword,
+      signUpWithPassword,
       signOut,
       refreshNotes,
     }),
@@ -282,6 +316,8 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
       removeNote,
       getNote,
       signInWithEmail,
+      signInWithPassword,
+      signUpWithPassword,
       signOut,
       refreshNotes,
     ]
