@@ -36,10 +36,11 @@ export default function GamePage() {
       sky: "#12131a",
       ground: "#1b1d28",
       groundLine: "#2c2f3f",
-      player: "#a855f7",
-      playerShadow: "#6d28d9",
-      obstacle: "#14b8a6",
-      obstacleTop: "#0f766e",
+      dino: "#22c55e",
+      dinoShadow: "#15803d",
+      cowboy: "#fbbf24",
+      cowboyHat: "#1f2937",
+      cowboyGun: "#9ca3af",
       text: "#f1f5f9",
       muted: "#94a3b8",
     };
@@ -160,6 +161,54 @@ export default function GamePage() {
       setScore(Math.floor(currentScore));
     };
 
+    const drawDino = () => {
+      // Body
+      ctx.fillStyle = colors.dinoShadow;
+      ctx.fillRect(player.x + 4, player.y + 6, player.w, player.h);
+      ctx.fillStyle = colors.dino;
+      ctx.fillRect(player.x, player.y, player.w, player.h);
+
+      // Head
+      ctx.fillRect(player.x + player.w - 6, player.y - 8, 18, 14);
+      // Eye
+      ctx.fillStyle = "#0f172a";
+      ctx.fillRect(player.x + player.w + 6, player.y - 2, 3, 3);
+      ctx.fillStyle = colors.dino;
+
+      // Tail
+      ctx.beginPath();
+      ctx.moveTo(player.x, player.y + 14);
+      ctx.lineTo(player.x - 12, player.y + 22);
+      ctx.lineTo(player.x, player.y + 30);
+      ctx.closePath();
+      ctx.fill();
+
+      // Legs
+      ctx.fillStyle = colors.dinoShadow;
+      ctx.fillRect(player.x + 6, player.y + player.h - 6, 6, 6);
+      ctx.fillRect(player.x + player.w - 12, player.y + player.h - 6, 6, 6);
+    };
+
+    const drawCowboy = (obs: Obstacle, groundY: number) => {
+      const obsY = groundY - obs.h;
+      const bodyW = obs.w;
+      const bodyH = obs.h;
+
+      // Body
+      ctx.fillStyle = colors.cowboy;
+      ctx.fillRect(obs.x, obsY, bodyW, bodyH);
+
+      // Hat
+      ctx.fillStyle = colors.cowboyHat;
+      ctx.fillRect(obs.x - 2, obsY - 8, bodyW + 4, 6);
+      ctx.fillRect(obs.x + 2, obsY - 14, bodyW - 4, 6);
+
+      // Gun
+      ctx.fillStyle = colors.cowboyGun;
+      ctx.fillRect(obs.x + bodyW - 2, obsY + bodyH * 0.55, 8, 3);
+      ctx.fillRect(obs.x + bodyW + 4, obsY + bodyH * 0.55 - 2, 3, 7);
+    };
+
     const draw = () => {
       const groundY = height - 32;
       ctx.clearRect(0, 0, width, height);
@@ -172,18 +221,9 @@ export default function GamePage() {
       ctx.fillStyle = colors.groundLine;
       ctx.fillRect(0, groundY, width, 2);
 
-      ctx.fillStyle = colors.playerShadow;
-      ctx.fillRect(player.x + 4, player.y + 6, player.w, player.h);
-      ctx.fillStyle = colors.player;
-      ctx.fillRect(player.x, player.y, player.w, player.h);
+      drawDino();
 
-      obstacles.forEach((obs) => {
-        const obsY = groundY - obs.h;
-        ctx.fillStyle = colors.obstacleTop;
-        ctx.fillRect(obs.x, obsY, obs.w, obs.h);
-        ctx.fillStyle = colors.obstacle;
-        ctx.fillRect(obs.x, obsY + 8, obs.w, obs.h - 8);
-      });
+      obstacles.forEach((obs) => drawCowboy(obs, groundY));
 
       ctx.fillStyle = colors.text;
       ctx.font = "600 16px Sora, system-ui, sans-serif";
@@ -238,7 +278,7 @@ export default function GamePage() {
             </p>
             <h1 className="text-3xl font-semibold">Runner Mini Game</h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Press Space (or click) to jump. Avoid the blocks.
+              Press Space (or click) to jump. Avoid the cowboys.
             </p>
           </div>
           <div className="flex items-center gap-2">
