@@ -252,8 +252,8 @@ export default function NotePage() {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <header className="border-b bg-white/80 backdrop-blur">
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(1200px_600px_at_15%_-10%,rgba(11,31,58,0.14),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(249,115,22,0.14),transparent_55%),linear-gradient(180deg,#f8fafc_0%,#ffffff_35%,#fff7ed_100%)]">
+      <header className="border-b border-slate-200/70 bg-white/75 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-5">
           <div className="flex items-center gap-3">
             <Button
@@ -296,7 +296,7 @@ export default function NotePage() {
               </Button>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border bg-white p-3 shadow-sm">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-sm">
             {note.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="gap-1">
                 {tag}

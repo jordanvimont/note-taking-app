@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Sora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { NotesProvider } from "@/hooks/use-notes";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const sora = Sora({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Note Taking App",
-  description: "A clean and modern note-taking app",
+  title: "Blackhawk Notes",
+  description: "Capture, organize, and sharpen your ideas.",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.className} bg-slate-50 text-slate-900`}>
+      <body className={`${sora.className} bg-background text-foreground antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

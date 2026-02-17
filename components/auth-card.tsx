@@ -126,12 +126,22 @@ export function AuthCard() {
   };
 
   return (
-    <div className="flex min-h-[70vh] items-center justify-center px-6">
-      <Card className="w-full max-w-md border bg-white/90 shadow-lg">
-        <CardHeader className="space-y-2">
-          <CardTitle className="text-2xl font-semibold">
-            Welcome back
-          </CardTitle>
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(1200px_600px_at_10%_-10%,rgba(11,31,58,0.18),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(249,115,22,0.16),transparent_55%),linear-gradient(180deg,#f8fafc_0%,#ffffff_35%,#fff7ed_100%)] px-6">
+      <Card className="w-full max-w-md border border-slate-200/80 bg-white/90 shadow-xl">
+        <CardHeader className="space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.95),rgba(11,31,58,0.95))] text-white shadow-lg shadow-orange-200/40">
+              <span className="text-sm font-semibold tracking-wide">B</span>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Blackhawk Notes
+              </p>
+              <CardTitle className="text-2xl font-semibold">
+                Welcome back
+              </CardTitle>
+            </div>
+          </div>
           <p className="text-sm text-muted-foreground">
             Sign in with email and password, or use a magic link.
           </p>

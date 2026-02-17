@@ -28,17 +28,19 @@ export default function Home() {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
-      <header className="border-b bg-white/80 backdrop-blur">
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(1200px_600px_at_15%_-10%,rgba(11,31,58,0.14),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(249,115,22,0.14),transparent_55%),linear-gradient(180deg,#f8fafc_0%,#ffffff_35%,#fff7ed_100%)]">
+      <header className="border-b border-slate-200/70 bg-white/75 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm">
-              <FileText className="h-5 w-5" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.95),rgba(11,31,58,0.95))] text-white shadow-lg shadow-orange-200/40">
+              <span className="text-base font-semibold tracking-wide">B</span>
             </div>
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight">Notes</h1>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Blackhawk Notes
+              </h1>
               <p className="text-sm text-muted-foreground">
-                Capture ideas, refine thoughts, and keep everything organized.
+                Capture, organize, and sharpen your ideas.
               </p>
             </div>
           </div>
@@ -50,7 +52,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mx-auto w-full max-w-6xl px-6 pb-6">
-          <div className="grid gap-3 rounded-2xl border bg-white p-4 shadow-sm">
+          <div className="grid gap-3 rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-sm">
             <SearchBar />
             <TagFilter />
           </div>
@@ -66,12 +68,12 @@ export default function Home() {
           </div>
         ) : notes.length === 0 ? (
           <div className="flex h-full items-center justify-center px-6">
-            <div className="w-full max-w-lg rounded-3xl border bg-white p-8 text-center shadow-sm">
+            <div className="w-full max-w-lg rounded-3xl border border-slate-200/80 bg-white/90 p-8 text-center shadow-sm">
               <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100">
                 <FileText className="h-7 w-7 text-slate-500" />
               </div>
-              <h2 className="text-xl font-semibold mb-2">No notes yet</h2>
-              <p className="text-muted-foreground mb-6">
+              <h2 className="mb-2 text-xl font-semibold">No notes yet</h2>
+              <p className="mb-6 text-muted-foreground">
                 Create your first note and start building your knowledge base.
               </p>
               <CreateNoteButton />
