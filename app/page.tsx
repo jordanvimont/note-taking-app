@@ -7,6 +7,7 @@ import { TagFilter } from "@/components/tag-filter";
 import { CreateNoteButton } from "@/components/create-note-button";
 import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { AuthCard } from "@/components/auth-card";
 
 export default function Home() {
@@ -46,6 +47,9 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2">
             <CreateNoteButton />
+            <Button asChild variant="outline" size="sm">
+              <Link href="/game">Play game</Link>
+            </Button>
             <Button variant="outline" size="sm" onClick={signOut}>
               Sign out
             </Button>
