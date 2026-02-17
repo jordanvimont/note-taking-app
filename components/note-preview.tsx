@@ -20,7 +20,7 @@ export function NotePreview({ note }: NotePreviewProps) {
 
   return (
     <ScrollArea className="h-full">
-      <div className="prose prose-sm dark:prose-invert max-w-none p-6 prose-headings:font-semibold prose-p:leading-relaxed prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted prose-pre:border">
+      <div className="prose prose-invert prose-sm max-w-none p-6 prose-headings:font-semibold prose-p:leading-relaxed prose-code:bg-muted/60 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted/60 prose-pre:border">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {note.content}
         </ReactMarkdown>

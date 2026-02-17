@@ -42,8 +42,8 @@ export function NoteList({ notes }: NoteListProps) {
             <Card
               key={note.id}
               className={cn(
-                "cursor-pointer border bg-white/90 transition-all hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md",
-                isActive && "bg-slate-50 border-slate-300 shadow-sm"
+                "cursor-pointer border border-border bg-card/80 transition-all hover:-translate-y-0.5 hover:bg-muted/40 hover:shadow-md",
+                isActive && "bg-muted/40 border-primary/40 shadow-sm"
               )}
               onClick={() => router.push(`/note/${note.id}`)}
             >

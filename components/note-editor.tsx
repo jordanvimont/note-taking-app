@@ -37,9 +37,10 @@ export function NoteEditor({ note, onChange }: NoteEditorProps) {
         placeholder="Start writing your note in Markdown..."
         className="flex-1 resize-none border-0 bg-transparent focus-visible:ring-0 text-base leading-relaxed"
       />
-      <div className="text-xs text-muted-foreground px-4 py-2 border-t bg-slate-50">
-        {note.content.length} characters • Press Ctrl+S to save
+      <div className="text-xs text-muted-foreground px-4 py-2 border-t border-border bg-muted/30">
+        {note.content.length} characters - Press Ctrl+S to save
       </div>
     </div>
   );
 }
+

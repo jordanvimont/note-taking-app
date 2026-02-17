@@ -252,8 +252,8 @@ export default function NotePage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[radial-gradient(1200px_600px_at_15%_-10%,rgba(11,31,58,0.14),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(249,115,22,0.14),transparent_55%),linear-gradient(180deg,#f8fafc_0%,#ffffff_35%,#fff7ed_100%)]">
-      <header className="border-b border-slate-200/70 bg-white/75 backdrop-blur">
+    <div className="flex min-h-screen flex-col bg-[radial-gradient(1200px_600px_at_15%_-10%,rgba(139,92,246,0.25),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(16,185,129,0.18),transparent_55%),linear-gradient(180deg,#12131a_0%,#151824_40%,#10121b_100%)]">
+      <header className="border-b border-border/70 bg-background/80 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-5">
           <div className="flex items-center gap-3">
             <Button
@@ -268,7 +268,7 @@ export default function NotePage() {
               value={note.title}
               onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="Untitled Note"
-              className="text-xl font-semibold border-slate-200 bg-white/90 focus-visible:ring-slate-300"
+              className="text-xl font-semibold border-border bg-card/80 focus-visible:ring-primary/40"
             />
             <div className="ml-auto flex items-center gap-2">
               <Button
@@ -296,7 +296,7 @@ export default function NotePage() {
               </Button>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-3 shadow-sm">
+          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-border/80 bg-card/80 p-3 shadow-sm">
             {note.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="gap-1">
                 {tag}
@@ -322,7 +322,7 @@ export default function NotePage() {
                     }
                   }}
                   placeholder="Add tag..."
-                  className="h-7 w-24 bg-slate-50 border-slate-200"
+                  className="h-7 w-24 bg-muted/40 border-border"
                   autoFocus
                 />
               </div>
@@ -342,9 +342,9 @@ export default function NotePage() {
       </header>
       <main className="flex-1 overflow-hidden">
         <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 gap-4 px-6 pb-6 pt-4 lg:grid-cols-2">
-          <Card className="h-full overflow-hidden border bg-white/90 shadow-sm">
-            <CardHeader className="border-b bg-slate-50/60 py-3">
-              <CardTitle className="text-sm font-semibold text-slate-600">
+          <Card className="h-full overflow-hidden border border-border bg-card/80 shadow-sm">
+            <CardHeader className="border-b border-border bg-muted/30 py-3">
+              <CardTitle className="text-sm font-semibold text-muted-foreground">
                 Editor
               </CardTitle>
             </CardHeader>
@@ -352,9 +352,9 @@ export default function NotePage() {
               <NoteEditor note={note} onChange={handleContentChange} />
             </CardContent>
           </Card>
-          <Card className="h-full overflow-hidden border bg-white/90 shadow-sm">
-            <CardHeader className="border-b bg-slate-50/60 py-3">
-              <CardTitle className="text-sm font-semibold text-slate-600">
+          <Card className="h-full overflow-hidden border border-border bg-card/80 shadow-sm">
+            <CardHeader className="border-b border-border bg-muted/30 py-3">
+              <CardTitle className="text-sm font-semibold text-muted-foreground">
                 Preview
               </CardTitle>
             </CardHeader>

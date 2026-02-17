@@ -15,7 +15,7 @@ export function SearchBar() {
         placeholder="Search notes..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="pl-9 pr-9 bg-slate-50 border-slate-200 focus-visible:ring-slate-300"
+        className="pl-9 pr-9 bg-muted/40 border-border focus-visible:ring-primary/40"
       />
       {searchQuery && (
         <button

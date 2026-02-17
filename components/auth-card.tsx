@@ -126,11 +126,11 @@ export function AuthCard() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(1200px_600px_at_10%_-10%,rgba(11,31,58,0.18),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(249,115,22,0.16),transparent_55%),linear-gradient(180deg,#f8fafc_0%,#ffffff_35%,#fff7ed_100%)] px-6">
-      <Card className="w-full max-w-md border border-slate-200/80 bg-white/90 shadow-xl">
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(1200px_600px_at_10%_-10%,rgba(139,92,246,0.25),transparent_60%),radial-gradient(900px_500px_at_90%_0%,rgba(16,185,129,0.18),transparent_55%),linear-gradient(180deg,#12131a_0%,#151824_40%,#10121b_100%)] px-6">
+      <Card className="w-full max-w-md border border-border/80 bg-card/90 shadow-xl">
         <CardHeader className="space-y-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.95),rgba(11,31,58,0.95))] text-white shadow-lg shadow-orange-200/40">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.95),rgba(59,7,100,0.95))] text-white shadow-lg shadow-purple-900/40">
               <span className="text-sm font-semibold tracking-wide">B</span>
             </div>
             <div>
@@ -153,7 +153,7 @@ export function AuthCard() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isBusy}
-            className="bg-slate-50 border-slate-200"
+            className="bg-muted/40 border-border"
           />
           <Input
             type="password"
@@ -161,7 +161,7 @@ export function AuthCard() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={isBusy}
-            className="bg-slate-50 border-slate-200"
+            className="bg-muted/40 border-border"
           />
           <Button
             onClick={handlePasswordSignIn}
