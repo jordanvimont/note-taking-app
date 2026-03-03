@@ -12,6 +12,12 @@ import React, {
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
 import type { Note, NoteRow } from "@/types/note";
+import {
+  getNotes as getLocalNotes,
+  getNote as getLocalNote,
+  saveNote as saveLocalNote,
+  deleteNote as deleteLocalNote,
+} from "@/lib/storage";
 
 type NotesContextValue = {
   user: User | null;
@@ -19,6 +25,8 @@ type NotesContextValue = {
   notes: Note[];
   allNotes: Note[];
   isLoading: boolean;
+  localOnly: boolean;
+  setLocalOnly: (value: boolean) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   selectedTag: string | null;
@@ -48,6 +56,7 @@ const toNote = (row: NoteRow): Note => ({
 export function NotesProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [localOnly, setLocalOnlyState] = useState(false);
   const [notes, setNotes] = useState<Note[]>([]);
   const notesRef = useRef<Note[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,19 +64,58 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem("notes-local-only");
+    setLocalOnlyState(stored === "1");
+  }, []);
+
+  const setLocalOnly = useCallback((value: boolean) => {
+    setLocalOnlyState(value);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("notes-local-only", value ? "1" : "0");
+    }
+  }, []);
+
+  useEffect(() => {
     let isMounted = true;
-    supabase.auth
-      .getUser()
-      .then(({ data }) => {
+    if (localOnly) {
+      setUser(null);
+      setAuthLoading(false);
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    const failSafe = setTimeout(() => {
+      if (!isMounted) return;
+      setAuthLoading(false);
+    }, 4000);
+
+    const bootstrapAuth = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
         if (!isMounted) return;
-        setUser(data.user ?? null);
-        setAuthLoading(false);
-      })
-      .catch(() => {
+        setUser(data.session?.user ?? null);
+      } catch {
         if (!isMounted) return;
         setUser(null);
-        setAuthLoading(false);
-      });
+      } finally {
+        if (isMounted) {
+          setAuthLoading(false);
+        }
+      }
+
+      try {
+        const { data } = await supabase.auth.getUser();
+        if (isMounted) {
+          setUser(data.user ?? null);
+        }
+      } catch {
+        // Ignore validation errors; session state above is enough for UI.
+      }
+    };
+
+    bootstrapAuth();
 
     const {
       data: { subscription },
@@ -77,11 +125,19 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
 
     return () => {
       isMounted = false;
+      clearTimeout(failSafe);
       subscription.unsubscribe();
     };
-  }, []);
+  }, [localOnly]);
 
   const fetchNotes = useCallback(async () => {
+    if (localOnly) {
+      const localNotes = getLocalNotes();
+      setNotes(localNotes);
+      setIsLoading(false);
+      return;
+    }
+
     if (!user) {
       setNotes([]);
       setIsLoading(false);
@@ -104,13 +160,13 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
 
     setNotes((data ?? []).map((row) => toNote(row as NoteRow)));
     setIsLoading(false);
-  }, [user]);
+  }, [localOnly, user]);
 
   useEffect(() => {
-    if (!authLoading) {
+    if (!authLoading || localOnly) {
       fetchNotes();
     }
-  }, [authLoading, fetchNotes]);
+  }, [authLoading, fetchNotes, localOnly]);
 
   useEffect(() => {
     notesRef.current = notes;
@@ -122,6 +178,23 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
 
   const createNote = useCallback(
     async (title: string = "Untitled Note"): Promise<Note> => {
+      if (localOnly) {
+        const now = new Date();
+        const newNote: Note = {
+          id: typeof crypto !== "undefined" && "randomUUID" in crypto
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+          title,
+          content: "",
+          tags: [],
+          createdAt: now,
+          updatedAt: now,
+        };
+        saveLocalNote(newNote);
+        setNotes((prev) => [newNote, ...prev]);
+        return newNote;
+      }
+
       if (!user) {
         throw new Error("You must be signed in to create notes.");
       }
@@ -138,18 +211,36 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
         .single();
 
       if (error || !data) {
-        throw error ?? new Error("Failed to create note.");
+        if (error) {
+          console.error("Error creating note:", error);
+          throw new Error(error.message || "Failed to create note.");
+        }
+        throw new Error("Failed to create note.");
       }
 
       const newNote = toNote(data as NoteRow);
       setNotes((prev) => [newNote, ...prev]);
       return newNote;
     },
-    [user]
+    [localOnly, user]
   );
 
   const updateNote = useCallback(
     async (updatedNote: Note): Promise<Note> => {
+      if (localOnly) {
+        const saved: Note = {
+          ...updatedNote,
+          updatedAt: new Date(),
+        };
+        saveLocalNote(saved);
+        setNotes((prev) =>
+          prev
+            .map((note) => (note.id === saved.id ? saved : note))
+            .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
+        );
+        return saved;
+      }
+
       if (!user) {
         throw new Error("You must be signed in to update notes.");
       }
@@ -177,11 +268,17 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
       );
       return saved;
     },
-    [user]
+    [localOnly, user]
   );
 
   const removeNote = useCallback(
     async (id: string): Promise<void> => {
+      if (localOnly) {
+        deleteLocalNote(id);
+        setNotes((prev) => prev.filter((note) => note.id !== id));
+        return;
+      }
+
       if (!user) {
         throw new Error("You must be signed in to delete notes.");
       }
@@ -193,13 +290,16 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
 
       setNotes((prev) => prev.filter((note) => note.id !== id));
     },
-    [user]
+    [localOnly, user]
   );
 
   const getNote = useCallback(
     async (id: string): Promise<Note | null> => {
       const cached = notesRef.current.find((note) => note.id === id);
       if (cached) return cached;
+      if (localOnly) {
+        return getLocalNote(id);
+      }
       if (!user) return null;
 
       const { data, error } = await supabase
@@ -214,7 +314,7 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
 
       return toNote(data as NoteRow);
     },
-    [user]
+    [localOnly, user]
   );
 
   const signInWithEmail = useCallback(async (email: string) => {
@@ -258,9 +358,13 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
   );
 
   const signOut = useCallback(async () => {
+    if (localOnly) {
+      setNotes([]);
+      return;
+    }
     await supabase.auth.signOut();
     setNotes([]);
-  }, []);
+  }, [localOnly]);
 
   const filteredNotes = useMemo(() => {
     let filtered = notes;
@@ -289,6 +393,8 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
       notes: filteredNotes,
       allNotes: notes,
       isLoading,
+      localOnly,
+      setLocalOnly,
       searchQuery,
       setSearchQuery,
       selectedTag,
@@ -309,6 +415,8 @@ export function NotesProvider({ children }: { children: React.ReactNode }) {
       filteredNotes,
       notes,
       isLoading,
+      localOnly,
+      setLocalOnly,
       searchQuery,
       selectedTag,
       createNote,

@@ -27,7 +27,15 @@ import { AuthCard } from "@/components/auth-card";
 export default function NotePage() {
   const params = useParams();
   const router = useRouter();
-  const { getNote, updateNote, removeNote, user, authLoading } = useNotes();
+  const {
+    getNote,
+    updateNote,
+    removeNote,
+    user,
+    authLoading,
+    localOnly,
+    setLocalOnly,
+  } = useNotes();
   const { toast } = useToast();
   const [note, setNote] = useState<Note | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,7 +55,7 @@ export default function NotePage() {
     let isMounted = true;
 
     const loadNote = async () => {
-      if (!user) {
+      if (!user && !localOnly) {
         setIsLoading(false);
         return;
       }
@@ -69,14 +77,14 @@ export default function NotePage() {
       setIsLoading(false);
     };
 
-    if (!authLoading) {
+    if (!authLoading || localOnly) {
       loadNote();
     }
 
     return () => {
       isMounted = false;
     };
-  }, [noteId, getNote, router, toast, authLoading, user]);
+  }, [noteId, getNote, router, toast, authLoading, user, localOnly]);
 
   const debouncedSave = useDebouncedCallback(
     (updatedNote: Note) => {
@@ -221,7 +229,7 @@ export default function NotePage() {
     [note, toast]
   );
 
-  if (authLoading) {
+  if (authLoading && !localOnly) {
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="text-center">
@@ -232,7 +240,7 @@ export default function NotePage() {
     );
   }
 
-  if (!user) {
+  if (!user && !localOnly) {
     return <AuthCard />;
   }
 
@@ -271,6 +279,13 @@ export default function NotePage() {
               className="text-xl font-semibold border-border bg-card/80 focus-visible:ring-primary/40"
             />
             <div className="ml-auto flex items-center gap-2">
+              <Button
+                variant={localOnly ? "default" : "outline"}
+                size="sm"
+                onClick={() => setLocalOnly(!localOnly)}
+              >
+                {localOnly ? "Local-only: On" : "Local-only: Off"}
+              </Button>
               <Button
                 variant="outline"
                 size="sm"

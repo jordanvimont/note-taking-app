@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set NEXT_TEST_WASM=1&& next dev --webpack",
+    "dev": "next dev --turbo -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

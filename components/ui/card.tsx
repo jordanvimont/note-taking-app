@@ -1,20 +1,47 @@
 import * as React from "react";
-
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    {...props}
-  />
-));
+const cardVariants = cva("rounded-lg border bg-card text-card-foreground shadow-sm", {
+  variants: {
+    size: {
+      sm: "",
+      md: "",
+      lg: "",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
+
+type CardProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof cardVariants>;
+
+const cardPaddingBySize: Record<NonNullable<CardProps["size"]>, string> = {
+  sm: "1rem",
+  md: "1.5rem",
+  lg: "2rem",
+};
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, size, style, ...props }, ref) => {
+    const padding = cardPaddingBySize[size ?? "md"];
+    const mergedStyle = {
+      ...style,
+      "--card-padding": padding,
+    } as React.CSSProperties;
+
+    return (
+      <div
+        ref={ref}
+        className={cn(cardVariants({ size, className }))}
+        style={mergedStyle}
+        {...props}
+      />
+    );
+  }
+);
 Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
@@ -23,7 +50,10 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn(
+      "flex flex-col space-y-1.5 p-[var(--card-padding,1.5rem)]",
+      className
+    )}
     {...props}
   />
 ));
@@ -60,7 +90,14 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn(
+      "px-[var(--card-padding,1.5rem)] pb-[var(--card-padding,1.5rem)] pt-0",
+      className
+    )}
+    {...props}
+  />
 ));
 CardContent.displayName = "CardContent";
 
@@ -70,7 +107,10 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
+    className={cn(
+      "flex items-center px-[var(--card-padding,1.5rem)] pb-[var(--card-padding,1.5rem)] pt-0",
+      className
+    )}
     {...props}
   />
 ));
